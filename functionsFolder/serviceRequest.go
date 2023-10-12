@@ -5,14 +5,7 @@ import (
 	"github.com/gofiber/fiber/v2"
 )
 
-type serviceRequest struct {
-	No          int64  `json:"no"`
-	Description string `json:"description"`
-	Type        string `json:"type"`
-	Status      string `json:"status"`
-	Assignee    string `json:"assignee"`
-	Reporter    string `json:"reporter"`
-}
+
 
 func GetSrData(c *fiber.Ctx, session *gocql.Session) error {
 	query := "Select no,description,Type,status,reporter from serviceRequest"

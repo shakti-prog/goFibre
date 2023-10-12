@@ -5,27 +5,23 @@ import (
 	"github.com/gocql/gocql"
 )
 
-type sampleTableData struct {
-	Name string `json:"name"`
-	Age  int64  `json:"age"`
-}
 
-func ReadData(session *gocql.Session) []sampleTableData {
+func ReadData(session *gocql.Session) []TableData {
 	query := "Select id,name,age from my_table"
 	fmt.Println("Query is ", query)
-	var data []sampleTableData
+	var data []TableData
 	scanner := session.Query(query).Iter().Scanner()
 	for scanner.Next() {
 		var id gocql.UUID
 		var name string
-		var age int64
+		var age string
 		err := scanner.Scan(&id, &name, &age)
 		if err != nil {
 			fmt.Println(err)
-			fmt.Println("Error in sccaning")
+			fmt.Println("Error in scanning")
 			break
 		}
-		data1 := sampleTableData{Name: name, Age: age}
+		data1 := TableData{Name: name, Age: age}
 		data = append(data, data1)
 	}
 	return data

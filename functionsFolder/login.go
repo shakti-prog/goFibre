@@ -7,11 +7,6 @@ import (
 	"time"
 )
 
-type userLogin struct {
-	Email    string `json:"email"`
-	Password string `json:"password"`
-}
-
 func Login(c *fiber.Ctx, session *gocql.Session) error {
 	p := new(userLogin)
 	if err := c.BodyParser(p); err != nil {

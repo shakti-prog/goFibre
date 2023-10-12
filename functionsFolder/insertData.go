@@ -8,10 +8,6 @@ import (
 )
 
 
-type TableData struct {
-   Name string `json:"name"`;
-   Age string `json:"age"`;
-}
 
 func InsertData(session *gocql.Session,c *fiber.Ctx) string{
     p := new(TableData);
