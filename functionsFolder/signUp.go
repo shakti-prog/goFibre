@@ -34,8 +34,7 @@ func SignUp(c *fiber.Ctx,session *gocql.Session) error {
          p.Password,            
     )
     if err := query.Exec(); err != nil {
-		 return c.Status(fiber.StatusInternalServerError).JSON(fiber.Map{"Err":"Could not sign up "})
-        
+		 return c.Status(fiber.StatusInternalServerError).JSON(fiber.Map{"Err":"Could not sign up "}) 
     }
 	return c.Status(fiber.StatusOK).JSON(fiber.Map{"Message":"Sign Up successfully" })
 }

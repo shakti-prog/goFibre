@@ -10,7 +10,7 @@ type sampleTableData struct {
 	Age  int64  `json:"age"`
 }
 
-func ReadData(session *gocql.Session) []sampleTableData{
+func ReadData(session *gocql.Session) []sampleTableData {
 	query := "Select id,name,age from my_table"
 	fmt.Println("Query is ", query)
 	var data []sampleTableData
