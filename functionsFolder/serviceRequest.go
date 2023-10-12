@@ -5,8 +5,6 @@ import (
 	"github.com/gofiber/fiber/v2"
 )
 
-
-
 func GetSrData(c *fiber.Ctx, session *gocql.Session) error {
 	query := "Select no,description,Type,status,reporter from serviceRequest"
 	var toDoData []serviceRequest

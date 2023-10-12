@@ -5,7 +5,6 @@ import (
 	"github.com/gocql/gocql"
 )
 
-
 func ReadData(session *gocql.Session) []TableData {
 	query := "Select id,name,age from my_table"
 	fmt.Println("Query is ", query)

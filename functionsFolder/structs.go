@@ -1,14 +1,11 @@
 package functionsfolder
 
-
 //Structs for different type of data coming from cassandra db
-
 
 type userLogin struct {
 	Email    string `json:"email"`
 	Password string `json:"password"`
 }
-
 
 type serviceRequest struct {
 	No          int64  `json:"no"`
@@ -19,8 +16,7 @@ type serviceRequest struct {
 	Reporter    string `json:"reporter"`
 }
 
-
 type TableData struct {
-   Name string `json:"name"`;
-   Age string `json:"age"`;
+	Name string `json:"name"`
+	Age  string `json:"age"`
 }
