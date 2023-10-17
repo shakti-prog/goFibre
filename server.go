@@ -3,6 +3,7 @@ package main
 import (
 	"fmt"
 	"github.com/gofiber/fiber/v2"
+	"github.com/gofiber/fiber/v2/middleware/cors"
 	"goFibre/dbConnection"
 	"goFibre/functionsFolder"
 )
@@ -11,11 +12,11 @@ func main() {
 	// Create a new Fiber instance
 	app, session := dbconnection.ConnectToDB()
 
-	app.Use(func(c *fiber.Ctx) error {
-		c.Set("Access-Control-Allow-Origin", "*") // Allow requests from any origin
-		c.Set("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept")
-		return c.Next()
-	})
+	app.Use(cors.New(cors.Config{
+		AllowOrigins: "http://localhost:3000",
+		AllowMethods: "GET,POST,PUT,DELETE",
+		AllowHeaders: "Origin, Content-Type, Accept",
+	}))
 
 	// Define routes and handlers
 	app.Get("/readData", func(c *fiber.Ctx) error {
@@ -42,6 +43,11 @@ func main() {
 
 	app.Post("/createSr", func(c *fiber.Ctx) error {
 		return functionsfolder.CreateNewSr(c, session)
+	})
+
+	app.Post("/updateSrStatus/:no/:status", func(c *fiber.Ctx) error {
+	   return functionsfolder.UpdateSr(c,session)
+ 
 	})
 
 	//Port number
