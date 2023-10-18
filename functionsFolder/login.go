@@ -27,7 +27,7 @@ func Login(c *fiber.Ctx, session *gocql.Session) error {
 		"Select email,password,name from userDetails where email=? and password=? ALLOW FILTERING", p.Email, p.Password)
 
 	err := query.Scan(&email, &password, &name)
-	if email == "" || password == "" {
+	if email == "" || password == "" || err != nil {
 		return c.Status(fiber.StatusUnauthorized).JSON(fiber.Map{"Error": "Wrong email or password"})
 	}
 
